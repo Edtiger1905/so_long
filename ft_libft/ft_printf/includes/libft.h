@@ -19,8 +19,8 @@
 # include <unistd.h>
 
 long	ft_atol(const char *str);
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
+int	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, char c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	**ft_split(const char *s, char c);
 size_t	count_words(const char *s, char c);

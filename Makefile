@@ -1,7 +1,8 @@
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
 NAME    = so_long
-SRCS    = main.c
+SRCS    = main.c \
+	  init_map.c
 OBJS    = $(SRCS:.c=.o)
 
 MLX_DIR = ./minilibx-linux
