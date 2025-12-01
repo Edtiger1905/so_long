@@ -1,61 +1,21 @@
-# Nome della libreria
-NAME		= libft.a
+SRC = ft_printf.c printer.c
 
-# Compilatore e flag
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-AR			= ar rcs
-RM			= rm -f
+NAME = libftprintf.a
 
-# Directory
-OBJ_DIR		= obj
-
-# ============================================================================ #
-# AGGIUNGI QUI LE TUE FUNZIONI                                                #
-# ============================================================================ #
-
-SRCS		= src/ft_atol.c \
-			  src/ft_strlen.c \
-			  src/ft_strchr.c \
-			  src/ft_substr.c \
-			  src/ft_split.c \
-			  src/ft_bzero.c \
-			  src/ft_calloc.c
-
-# File oggetto
-OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
-
-# Colori
-GREEN		= \033[0;32m
-RED			= \033[0;31m
-RESET		= \033[0m
-
-# Regola principale
 all: $(NAME)
 
-# Creazione della libreria
-$(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
-	@echo "$(GREEN)✓ $(NAME) creata con successo!$(RESET)"
+.c.o: 
+	cc -Wall -Wextra -Werror -c $< -o ${<:.c=.o}
 
-# Compilazione file oggetto
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(GREEN)✓$(RESET) Compilato: $<"
+OBJS = ${SRC:.c=.o}
 
-# Pulizia file oggetto
+$(NAME):	${OBJS}
+			ar rcs ${NAME} ${OBJS}
+
 clean:
-	@$(RM) -r $(OBJ_DIR)
-	@echo "$(RED)✗ File oggetto rimossi$(RESET)"
+			rm -f ${OBJS}
+			
+fclean:		clean
+			rm -f ${NAME}
 
-# Pulizia completa
-fclean: clean
-	@$(RM) $(NAME)
-	@echo "$(RED)✗ $(NAME) rimossa$(RESET)"
-
-# Ricompilazione completa
-re: fclean all
-
-# Regole phony
-.PHONY: all clean fclean re
+re:			fclean all
