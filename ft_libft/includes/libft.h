@@ -6,7 +6,7 @@
 /*   By: edtiger1905 <edtiger1905@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2025/12/02 21:23:39 by edtiger1905      ###   ########.fr       */
+/*   Updated: 2025/12/02 21:54:28 by edtiger1905      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	**ft_split(const char *s, char c);
 size_t	count_words(const char *s, char c);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
+size_t	ft_strncpy(char *dst, const char *src, size_t size);
 
 #endif

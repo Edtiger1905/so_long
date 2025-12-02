@@ -20,7 +20,8 @@ SRCS		= src/ft_atol.c \
 			  src/ft_substr.c \
 			  src/ft_split.c \
 			  src/ft_bzero.c \
-			  src/ft_calloc.c
+			  src/ft_calloc.c \
+			  src/ft_strncpy.c
 
 # File oggetto
 OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
