@@ -1,6 +1,6 @@
 SRC = ft_printf.c printer.c
 
-NAME = libftprintf.a
+NAME = ft_printf.a
 
 all: $(NAME)
 

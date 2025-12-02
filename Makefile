@@ -1,4 +1,4 @@
-CC      = cc
+CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 NAME    = so_long
 
@@ -10,26 +10,31 @@ OBJS    = $(SRCS:.c=.o)
 
 # Directory delle librerie
 MLX_DIR     = ./minilibx-linux
-LIBFT_DIR   = ./ft_libft/ft_printf
+LIBFT_DIR   = ./ft_libft
 GNL_DIR     = ./get_next_line
+PRINTF_DIR	= ./ft_printf
 
 # File delle librerie
 MLX_LIB     = $(MLX_DIR)/libmlx.a
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 GNL_LIB     = $(GNL_DIR)/gnl.a
-
-# Flag di linking
-MLX_FLAG    = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -lm -lXext -lX11
-LIBFT_FLAG  = -I$(LIBFT_DIR)/includes -L$(LIBFT_DIR) -lft
-GNL_FLAG    = -I$(GNL_DIR) -L$(GNL_DIR) -lgnl
+PRINTF_LIB	= $(PRINTF_DIR)/libftprintf.a
 
 # Flag per la compilazione (include directories)
-INCLUDES    = -I$(LIBFT_DIR)/includes -I$(GNL_DIR) -I$(MLX_DIR)
+INCLUDES    = -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX_DIR) -I$(PRINTF_DIR)
 
-all: $(MLX_LIB) $(LIBFT_LIB) $(GNL_LIB) $(NAME)
+# Librerie da linkare (ordine importante!)
+LIBS        = $(GNL_LIB) $(PRINTF_LIB) $(LIBFT_LIB) $(MLX_LIB)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAG) $(LIBFT_FLAG) $(GNL_FLAG)
+# Flag di linking (dopo le librerie)
+LDFLAGS     = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
+
+.PHONY: all clean fclean re
+
+all: $(MLX_LIB) $(LIBFT_LIB) $(GNL_LIB) $(PRINTF_LIB) $(NAME)
+
+$(NAME): $(OBJS) $(LIBS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) $(LDFLAGS)
 
 # Compila le librerie
 $(LIBFT_LIB):
@@ -41,21 +46,24 @@ $(MLX_LIB):
 $(GNL_LIB):
 	$(MAKE) -C $(GNL_DIR)
 
+$(PRINTF_LIB):
+	$(MAKE) -C $(PRINTF_DIR)
+
 # Compila i file oggetto con gli include necessari
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GNL_DIR) clean
 	$(MAKE) -C $(MLX_DIR) clean
+	$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(GNL_DIR) fclean
+	$(MAKE) -C $(PRINTF_DIR) fclean
 
 re: fclean all
-
-.PHONY: all clean fclean re

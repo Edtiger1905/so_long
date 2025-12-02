@@ -15,7 +15,7 @@ int init_map(t_game *game, char *file)
     line = get_next_line(fd_in);
     while (line != NULL)
     {
-        if ((size_t)game->map_width < ft_strlen(line))
+        if (game->map_width < ft_strlen(line))
             game->map_width = ft_strlen(line);
         game->map_height++;
         free(line);
