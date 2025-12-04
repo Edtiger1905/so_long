@@ -9,7 +9,7 @@ int init_map(t_map *map, char *file)
     if (fd_in == -1)
         return (0);
 
-    map->rows = 0;
+    map->rows J= 0;
     map->column = 0;
 
     line = get_next_line(fd_in);
