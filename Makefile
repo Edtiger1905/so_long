@@ -4,7 +4,9 @@ NAME    = so_long
 
 # File sorgente
 SRCS    = main.c \
-          init_map.c
+          init_map.c \
+		  parsing_map.c \
+		  init.c 
 
 OBJS    = $(SRCS:.c=.o)
 

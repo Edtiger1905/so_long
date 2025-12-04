@@ -9,7 +9,7 @@ int init_map(t_map *map, char *file)
     if (fd_in == -1)
         return (0);
 
-    map->rows J= 0;
+    map->rows = 0;
     map->column = 0;
 
     line = get_next_line(fd_in);
@@ -34,7 +34,6 @@ int init_matrix(t_map *map, char *file)
     fd_in = open(file, O_RDONLY);
     if (fd_in == -1)
         return (0);
-
     map->matrix = ft_calloc(map->rows, sizeof(char *));
     if(!map->matrix)
         return(0);
@@ -54,3 +53,4 @@ int init_matrix(t_map *map, char *file)
     close(fd_in);
     return (1);
 }
+

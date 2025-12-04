@@ -1,44 +1,25 @@
-#include "minilibx-linux/mlx.h"
-#include <stdio.h>
+#include "so_long.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
     void	*mlx;
     void    *mlx_win;
-    void	*img;
-    int		win_width;
-    int		win_height;
-    int     	i;
-    int		j;
-    int     img_width;
-    int     img_height;
+    t_map   map;
+    t_game  game;
 
-    win_width = 640;
-    win_height = 320;
-    img_height = 32;
-    img_width = 32;
-    i = 0;
-    j = 0;
-
-    mlx = mlx_init();
-    mlx_win = mlx_new_window(mlx, win_width, win_height, "so_long");
-    while(j < (win_height / img_height))
+    if (argc != 2)
     {
-	i = 0;
-    	while(i < (win_width / img_width))
-    	{
-        	img = mlx_xpm_file_to_image(mlx, "New-Piskel.xpm", &img_width , &img_height);
-    		if (img == NULL)
-    		{
-        		printf("Errore: impossibile caricare bkg.xpm\n");
-        		return (1);
-    		}
-    		mlx_put_image_to_window(mlx, mlx_win, img, img_width * i, img_height * j);
-		i++;
-    	}
-	j++;
+        ft_printf("Usage: %s <map_file>\n", argv[0]);
+        return (1);
     }
+    mlx = mlx_init();
+    init_game(&game, &map);
+    init_map(&map, argv[1]);
+    mlx_win = mlx_new_window(mlx, game.win_width, game.win_height, "so_long");
+    read_matrix(&map, mlx, mlx_win);
     mlx_loop(mlx);
 
     return (0);
 }
+
+
