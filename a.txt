@@ -1,2 +1,0 @@
-leggere la matrice,assegnare se legge un 1 o legge uno 0 la corrispettiva immagine,1 il muro,0 il terreno
-da fare domani
