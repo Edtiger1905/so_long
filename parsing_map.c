@@ -24,9 +24,8 @@ int read_matrix(t_map *map, void *mlx, void *win)
     void *muro;
     void *terreno;
 
-    if (!mlx)
+    if (!mlx || !win)
         return (0);
-    muro = mlx_xpm_file_to_image(mlx, "muro.xpm", map->img_width, map->img_height);
 
     i = 0;
     while (i < map->rows)
@@ -34,15 +33,22 @@ int read_matrix(t_map *map, void *mlx, void *win)
         j = 0;
         while (j < map->column)
         {
-            if(map->matrix[i][j] == '1')
+            if (map->matrix[i][j] == '1')
             {
-                muro = mlx_xpm_file_to_image(mlx, "muro.xpm", map->img_width, map->img_height);
-                mlx_put_image_to_window(mlx, win, muro, j * (*map->img_width), i * (*map->img_height));
-            }else if (map->matrix[i][j] == '0')
+                muro = mlx_xpm_file_to_image(mlx, "muro.xpm",
+                                             &map->img_width, &map->img_height);
+                mlx_put_image_to_window(mlx, win, muro,
+                                        j * map->img_width,
+                                        i * map->img_height);
+            }
+            else if (map->matrix[i][j] == '0')
             {
-                terreno = mlx_xpm_file_to_image(mlx, "terreno.xpm", map->img_width, map->img_height);
-                mlx_put_image_to_window(mlx, win, terreno, j * (*map->img_width), i * (*map->img_height));
-            }            
+                terreno = mlx_xpm_file_to_image(mlx, "terreno.xpm",
+                                                &map->img_width, &map->img_height);
+                mlx_put_image_to_window(mlx, win, terreno,
+                                        j * map->img_width,
+                                        i * map->img_height);
+            }
             j++;
         }
         i++;

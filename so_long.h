@@ -15,12 +15,12 @@ typedef struct s_game{
 
 typedef struct s_map
 {
-	int rows;
-	int column;
-	char **matrix;
-	int	*img_width;
-	int	*img_height;
-}	t_map;
+    int rows;
+    int column;
+    char **matrix;
+    int img_width;
+    int img_height;
+} t_map;
 
 
 
