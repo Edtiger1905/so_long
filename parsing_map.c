@@ -42,8 +42,7 @@ int read_matrix(t_map *map, void *mlx, void *win)
             {
                 terreno = mlx_xpm_file_to_image(mlx, "terreno.xpm", map->img_width, map->img_height);
                 mlx_put_image_to_window(mlx, win, terreno, j * (*map->img_width), i * (*map->img_height));
-            }
-            
+            }            
             j++;
         }
         i++;
