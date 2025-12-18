@@ -20,6 +20,11 @@ typedef struct s_map
     char **matrix;
     int img_width;
     int img_height;
+    void *img_wall;
+    void *img_floor;
+    void *img_exit;
+    void *img_player;
+    void *img_collectibles;
 } t_map;
 
 
@@ -35,6 +40,7 @@ void    init_game(t_game *game, t_map *map);
 /* parsing_map.c: */
 int validate_map(t_map *map, char *file);
 int read_matrix(t_map *map, void *mlx, void *win);
+void cleanup_images(t_map *map, void *mlx);
 
 
 /* init_map.c: */

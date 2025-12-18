@@ -21,7 +21,11 @@ int main(int argc, char **argv)
     mlx = mlx_init();
     init_game(&game, &map);
     mlx_win = mlx_new_window(mlx, game.win_width, game.win_height, "so_long");
-    read_matrix(&map, mlx, mlx_win);
+    if(!read_matrix(&map, mlx, mlx_win))
+    {
+        //cleanup_images(&map, mlx);
+        return (1);
+    }
     mlx_loop(mlx);
     return (0);
 }
