@@ -23,21 +23,18 @@ int main(int argc, char **argv)
         return (1);
     }
     init_struct(&map, &game);
-    // Prima leggi le dimensioni della mappa
     if (!init_map(&map, argv[1]))
     {
         ft_printf("Error: Failed to initialize map\n");
         return (1);
     }
-    
-    // Poi crea la matrice
     if (!init_matrix(&map, argv[1]))
     {
         ft_printf("Error: Failed to create matrix\n");
         return (1);
     }
-    
-    // Inizializza MLX PRIMA di calcolare le dimensioni
+    if(!checks(map, game, argv[1]))
+        return (1);
     map.mlx = mlx_init();
     if (!map.mlx)
     {
@@ -45,7 +42,6 @@ int main(int argc, char **argv)
         return (1);
     }
     
-    // Carica una singola immagine per ottenere le dimensioni reali
     map.img_wall = mlx_xpm_file_to_image(map.mlx, "./img/wall.xpm", 
                                           &map.img_width, &map.img_height);
     if (!map.img_wall)
