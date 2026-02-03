@@ -81,3 +81,25 @@ int main(int argc, char **argv)
     mlx_loop(map.mlx);
     return (0);
 }
+
+
+
+
+
+/*
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[][][][][]
+*/
