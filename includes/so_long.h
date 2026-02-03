@@ -1,9 +1,9 @@
 #include <unistd.h>
 #include <stdio.h>
-#include "ft_libft/includes/libft.h"
-#include "get_next_line/get_next_line.h"
-#include "ft_printf/ft_printf.h"
-#include "minilibx-linux/mlx.h"
+#include "../ft_libft/includes/libft.h"
+#include "../get_next_line/get_next_line.h"
+#include "../ft_printf/ft_printf.h"
+#include "../minilibx-linux/mlx.h"
 
 typedef struct s_game{
 	
@@ -15,6 +15,8 @@ typedef struct s_game{
 
 typedef struct s_map
 {
+    void *mlx;
+    void *mlx_win;
     int rows;
     int column;
     char **matrix;
@@ -25,6 +27,7 @@ typedef struct s_map
     void *img_exit;
     void *img_player;
     void *img_collectibles;
+    struct s_game *game;
 } t_map;
 
 

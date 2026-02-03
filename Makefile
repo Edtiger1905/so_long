@@ -2,10 +2,10 @@ CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 NAME    = so_long
 
-SRCS    = main.c \
-          init_map.c \
-		  parsing_map.c \
-		  init.c 
+SRCS    = src/main.c \
+          src/init_map.c \
+		  src/parsing_map.c \
+		  src/init.c 
 
 OBJS    = $(SRCS:.c=.o)
 
