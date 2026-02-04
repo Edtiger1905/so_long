@@ -1,19 +1,5 @@
 #include "./includes/so_long.h"
 
-void free_matrix(char **matrix)
-{
-    int i;
-
-    i = 0;
-    while(matrix[i] != NULL)
-    {
-        free(matrix[i]);
-        matrix[i] = NULL;
-        i++;
-    }
-    free(matrix);
-}
-
 void flood_fill(char **matrix, int x, int y, t_map *map)
 {
     if(y < 0 || y >= map->rows || x < 0 || x >= map->column)
@@ -32,7 +18,7 @@ void flood_fill(char **matrix, int x, int y, t_map *map)
     flood_fill(matrix, x, y + 1, map);
     flood_fill(matrix, x, y - 1, map);
 }
-static int validate_flood_fill(char **matrix)
+static int validate_flood_fill(char **matrix, t_map *map)
 {
     int i;
     int j;
@@ -45,7 +31,7 @@ static int validate_flood_fill(char **matrix)
         {
             if(matrix[i][j] == 'E' || matrix[i][j] == 'C')
             {
-                free_matrix(matrix);
+                ft_printf("Error: Unreachable elements\n");
                 return (-1);
             }
             j++;
@@ -55,29 +41,53 @@ static int validate_flood_fill(char **matrix)
     return (0);
 }
 
-int flood_fill_execution(t_map *map)
+static char **create_matrix_copy(t_map *map)
 {
-    int i;
     char **matrix_copy;
+    int i;
 
-    i = 0;
     matrix_copy = ft_calloc(map->rows + 1, sizeof(char *));
     if(!matrix_copy)
-        return (exit_game(map, "Error: Flood fill allocation failed.\n"), -1);
+        return (NULL);
+    i = 0;
     while(i < map->rows)
     {
         matrix_copy[i] = ft_strdup(map->matrix[i]);
         if(!matrix_copy[i])
         {
-            free_matrix(matrix_copy);
-            return (exit_game(map, "Error: Flood fill allocation failed.\n"), -1);
+            while (i > 0)
+                free(matrix_copy[i--]);
+            free(matrix_copy);
+            return(NULL);
         }
         i++;
     }
     matrix_copy[i] = NULL;
-    flood_fill(matrix_copy, map->x, map->y, map);
-    if(validate_flood_fill(matrix_copy) < 0)
-        return (exit_game(map, "Error: Map is not valid (unreachable E or C).\n"), -1);
-    free_matrix(matrix_copy);
-    return (0);
+    return(matrix_copy);
+}
+static void free_matrix_copy(char **matrix, int rows)
+{
+    int i;
+
+    i = 0;
+    while (i < rows)
+        free(matrix[i++]);
+    free(matrix);
+}
+
+int flood_fill_execution(t_map *map)
+{
+    int result;
+    char **matrix_copy;
+
+    matrix_copy = create_matrix_copy(map);
+    if(!matrix_copy)
+    {
+        ft_printf("Error: Flood fill allocation failed\n");
+        return(0);
+    }
+    flood_fill(matrix_copy, map->p_y, map->p_x, map);
+    result = validate_flood_fill(matrix_copy, map);
+    free_matrix_copy(matrix_copy, map->rows);
+    return(result);
 }

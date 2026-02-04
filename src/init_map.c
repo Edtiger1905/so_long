@@ -47,7 +47,7 @@ int init_matrix(t_map *map, char *file)
         map->matrix[row] = ft_calloc(map->column + 1, sizeof(char));
         if(!map->matrix[row])
             return (0);
-        ft_strncpy(map->matrix[row], line, map->);
+        ft_strncpy(map->matrix[row], line, map->column);
         map->matrix[row][map->column] = '\0';
         free(line);
         row++;
