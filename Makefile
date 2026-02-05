@@ -2,10 +2,17 @@ CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 NAME    = so_long
 
-SRCS    = src/main.c \
-          src/init_map.c \
-		  src/parsing_map.c \
-		  src/init.c 
+SRCS = src/main.c \
+       src/init_map.c \
+       src/init.c \
+       src/checks.c \
+       src/checks_elements.c \
+       src/flood_fill.c \
+       src/render.c \
+       src/player_movement.c \
+       src/hooks.c \
+       src/load_images.c \
+       src/exit_game.c
 
 OBJS    = $(SRCS:.c=.o)
 
