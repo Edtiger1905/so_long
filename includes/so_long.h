@@ -77,7 +77,7 @@ void	init_hooks(t_map *map);
 int		load_images(t_map *map);
 
 /* exit_game.c */
-void	free_matrix(t_map *map);
+int    	free_matrix(t_map *map);
 void	cleanup_images(t_map *map, void *mlx);
 void	exit_game(t_map *map, void *mlx);
 

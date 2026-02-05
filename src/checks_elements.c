@@ -4,9 +4,9 @@ static void count_element(t_map *map, int i, int j)
 {
     if(map->matrix[i][j] == 'P')
     {
-        map->p_count++;
-        map->p_y = i;
-        map->p_x = j;
+        map->player_count++;
+        map->player_y = i;
+        map->player_x = j;
     }
     else if(map->matrix[i][j] == 'E')
         map->exit_count++;
@@ -27,7 +27,7 @@ static int check_invalid_char(t_map *map, int i, int j)
 }
 static int validate_counts(t_map *map)
 {
-    if(map->p_count != 1)
+    if(map->player_count != 1)
     {
         ft_printf("Error: Map must have exactly 1 player/n");
         return (0);
@@ -49,7 +49,7 @@ int validate_elements(t_map *map)
     int i;
     int j;
 
-    map->p_count = 0;
+    map->player_count = 0;
     map->exit_count = 0;
     map->coin = 0;
     i = 0;

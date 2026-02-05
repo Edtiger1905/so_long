@@ -2,7 +2,7 @@
 NAME		= libft.a
 
 # Compilatore e flag
-CC			= cc
+CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 AR			= ar rcs
 RM			= rm -f
@@ -21,10 +21,12 @@ SRCS		= src/ft_atol.c \
 			  src/ft_split.c \
 			  src/ft_bzero.c \
 			  src/ft_calloc.c \
-			  src/ft_strncpy.c
+			  src/ft_strncpy.c \
+			  src/ft_strncmp.c \
+			  src/ft_strdup.c
 
 # File oggetto
-OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
+OBJS		= $(SRCS:src/%.c=$(OBJ_DIR)/src/%.o)
 
 # Colori
 GREEN		= \033[0;32m
@@ -40,7 +42,7 @@ $(NAME): $(OBJS)
 	@echo "$(GREEN)✓ $(NAME) creata con successo!$(RESET)"
 
 # Compilazione file oggetto
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/src/%.o: src/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(GREEN)✓$(RESET) Compilato: $<"

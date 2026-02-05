@@ -45,14 +45,14 @@ void move_player(t_map *map, int dy, int dx)
     int new_x;
     int new_y;
 
-    new_y = map->p_y + dy;
-    new_x = map->p_x + dx;
+    new_y = map->player_y + dy;
+    new_x = map->player_x + dx;
     if(!is_valid_move(map, new_y, new_x))
         return ;
-    map->matrix[map->p_y][map->p_x] = '0';
+    map->matrix[map->player_y][map->player_x] = '0';
     check_coin(map, new_y, new_x);
-    map->p_y = new_y;
-    map->p_x = new_x;
+    map->player_y = new_y;
+    map->player_x = new_x;
     map->matrix[new_y][new_x] = 'P';
     map->moves++;
     ft_printf("Moves: %d\n", map->moves);
@@ -67,9 +67,9 @@ int key_hook(int keycode, t_map *map)
         exit(0);
     }
     else if(keycode ==  65363 || keycode == 100)
-        mov_player(map, 0, 1);
+        move_player(map, 0, 1);
     else if(keycode == 65361 || keycode == 97)
-        mov_player(map, 0, -1);
+        move_player(map, 0, -1);
     else if(keycode == 65362 || keycode == 119)
         move_player(map, -1, 0);
     else if(keycode == 65364 || keycode == 115)

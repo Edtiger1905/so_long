@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/05 12:33:24 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/05 12:47:25 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ size_t	count_words(const char *s, char c);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 size_t	ft_strncpy(char *dst, const char *src, size_t size);
-
+int     ft_strncmp(const char *s1, const char *s2, size_t n);
+char    *ft_strdup(const char *src);
 #endif

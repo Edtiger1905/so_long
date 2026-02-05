@@ -2,7 +2,7 @@
 NAME = gnl.a
 
 # Compilatore e flag
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -fPIC
 AR = ar rcs
 RM = rm -f

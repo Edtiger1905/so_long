@@ -11,7 +11,7 @@ int load_images(t_map *map)
         &map->img_width, &map->img_height);
     map->img_player = mlx_xpm_file_to_image(map->mlx, "./img/testcp.xpm",
         &map->img_width, &map->img_height);
-    map->img_wall = mlx_xpm_file_to_image(map->mlx, 
+    map->img_collectibles = mlx_xpm_file_to_image(map->mlx, 
         "./img/collectibles.xpm", &map->img_width, &map->img_height);
     if(!map->img_wall || !map->img_floor || !map->img_exit)
     {

@@ -1,4 +1,4 @@
-#include "./includes/so_long.h"
+#include "../includes/so_long.h"
 
 void flood_fill(char **matrix, int x, int y, t_map *map)
 {
@@ -24,10 +24,10 @@ static int validate_flood_fill(char **matrix, t_map *map)
     int j;
 
     i = 0;
-    while(matrix[i])
+    while(i < map->rows)
     {
         j = 0;
-        while(matrix[i][j])
+        while(j < map->column)
         {
             if(matrix[i][j] == 'E' || matrix[i][j] == 'C')
             {
@@ -86,7 +86,7 @@ int flood_fill_execution(t_map *map)
         ft_printf("Error: Flood fill allocation failed\n");
         return(0);
     }
-    flood_fill(matrix_copy, map->p_y, map->p_x, map);
+    flood_fill(matrix_copy, map->player_y, map->player_x, map);
     result = validate_flood_fill(matrix_copy, map);
     free_matrix_copy(matrix_copy, map->rows);
     return(result);
