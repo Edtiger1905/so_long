@@ -1,7 +1,6 @@
 #include "../includes/so_long.h"
 
-
-void init_struct(t_map *map, t_game *game)
+void init_struct(t_map *map)
 {
     map->matrix = NULL;
     map->img_wall = NULL;
@@ -11,91 +10,73 @@ void init_struct(t_map *map, t_game *game)
     map->img_collectibles = NULL;
     map->mlx = NULL;
     map->mlx_win = NULL;
+    map->player_x = 0;
+    map->player_y = 0;
+    map->coin = 0;
+    map->moves = 0;
+    map->exit_count = 0;
+    map->player_count = 0;
 }
-int main(int argc, char **argv)
+static int validate_map(t_map *map, char *file)
 {
-    t_map   map;
-    t_game  game;
+    if(!init_map(map, file))
+        return (ft_printf("Error: Failed to initialize map\n"), 0);
+    if(!init_matrix(map, file))
+        return(ft_printf("Error: Failed to create matrix\n"), 0);
+    if(!checks(map, file))
+    {
+        free_matrix(map);
+        return(0);
+    }
+    if(!flood_fill_execution(map))
+    {
+        free_matrix(map);
+        return(0);
+    }
+    return(1);
+}
 
-    if (argc != 2)
+static int init_game_window(t_map *map, t_game *game)
+{
+    map->mlx = mlx_init();
+    if(!map->mlx)
+        return(ft_printf("Error: Failed to initialize MLX\n"), 0);
+    if(!load_images(map))
     {
-        ft_printf("Usage: %s <map_file>\n", argv[0]);
-        return (1);
+        exit_game(map, map->mlx);
+        return(0);
     }
-    init_struct(&map, &game);
-    if (!init_map(&map, argv[1]))
+    init_game(game, map);
+    map->game = game;
+    map->mlx_win = mlx_new_window(map->mlx, game->win_width,
+            game->win_height, "so_long");
+    if(!map->mlx_win)
     {
-        ft_printf("Error: Failed to initialize map\n");
-        return (1);
+        exit_game(map, map->mlx);
+        return(ft_printf("Error: Failed to create window\n"), 0);
     }
-    if (!init_matrix(&map, argv[1]))
-    {
-        ft_printf("Error: Failed to create matrix\n");
-        return (1);
-    }
-    if(!checks(map, game, argv[1]))
-        return (1);
-    map.mlx = mlx_init();
-    if (!map.mlx)
-    {
-        ft_printf("Error: Failed to initialize MLX\n");
-        return (1);
-    }
-    
-    map.img_wall = mlx_xpm_file_to_image(map.mlx, "./img/wall.xpm", 
-                                          &map.img_width, &map.img_height);
-    if (!map.img_wall)
-    {
-        ft_printf("Error: Failed to load wall.xpm\n");
-        return (1);
-    }
-    
-    // Ora calcola le dimensioni della finestra
-    init_game(&game, &map);
-    map.game = &game;
-    
-    ft_printf("Window dimensions: %dx%d\n", game.win_width, game.win_height);
-    
+    return(1);
+}
 
-    // Crea la finestra con le dimensioni corrette
-    map.mlx_win = mlx_new_window(map.mlx, game.win_width, game.win_height, "so_long");
-    if (!map.mlx_win)
-    {
-        exit_game(&map, "Error: Failed to create window\n");
-        cleanup_images(&map, map.mlx);
-        return (1);
-    }
-    
-    // Ora carica e disegna tutto
-    if (!read_matrix(&map, map.mlx, map.mlx_win))
-    {
-        ft_printf("Error: Failed to read matrix\n");
-        cleanup_images(&map, map.mlx);
-        return (1);
-    }
+int main(int ac, char **av)
+{
+    t_map map;
+    t_game game;
 
+    if(ac != 2)
+        return (ft_printf("Usage: %s <map.ber>\n", av[0]), 1);
+    init_struct(&map);
+    if(!validate_map(&map, av[1]))
+        return(1);
+    if(!init_game_window(&map, &game))
+        return(1);
+    if(!read_matrix(&map, map.mlx, map.mlx_win))
+    {
+        exit_game(&map, map.mlx);
+        return(ft_printf("Error: Failed to draw map\n"), 1);
+    }
+    init_hooks(&map);
+    ft_printf("Game started! Collect %d ichigo's hollow masks to finish the game\n", map.coin);
     mlx_loop(map.mlx);
     return (0);
 }
-
-
-
-
-
-/*
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[][][][][]
-*/

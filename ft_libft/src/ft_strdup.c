@@ -2,42 +2,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 15:51:09 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/05 12:54:41 by epandele         ###   ########.fr       */
+/*   Created: 2026/02/05 12:52:17 by epandele          #+#    #+#             */
+/*   Updated: 2026/02/05 12:52:18 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static int	ft_isspace(char c)
+char	*ft_strdup(const char *src)
 {
-	return (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f' || c == '\r');
-}
+	char	*dup;
+	size_t	i;
 
-long	ft_atol(const char *str)
-{
-	long	result;
-	int		sign;
-
-	result = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-' || *str == '+')
+	if (!src)
+		return (NULL);
+	dup = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (src[i])
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		dup[i] = src[i];
+		i++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}
-	return (result * sign);
+	dup[i] = '\0';
+	return (dup);
 }
