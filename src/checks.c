@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 12:07:37 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:23:48 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_rectangular(t_map *map)
 	{
 		if (ft_strlen(map->matrix[i]) != first_len)
 		{
-			ft_printf("Error\nMap is not rectangular\n");
+			ft_printf("Error: Map is not rectangular\n");
 			return (0);
 		}
 		i++;
