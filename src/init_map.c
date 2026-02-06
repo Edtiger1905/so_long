@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 11:53:42 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:13:41 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,33 @@ int	init_map(t_map *map, char *file)
 	return (1);
 }
 
-int	init_matrix(t_map *map, char *file)
+int init_matrix(t_map *map, char *file)
 {
-	int		fd;
-	char	*line;
-	int		row;
-	int		len;
+    int     fd;
+    char    *line;
+    int     row;
+    int     len;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	map->matrix = ft_calloc(map->rows + 1, sizeof(char *));
-	if (!map->matrix)
-		return (close(fd), 0);
-	row = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		len = ft_strlen(line);
-		if (len > 0 && line[len - 1] == '\n')
-			line[len - 1] = '\0';
-		map->matrix[row] = ft_strdup(line);
-		if (!map->matrix[row])
-			return (0);
+    fd = open(file, O_RDONLY);
+    if (fd == -1)
+        return (0);
+    map->matrix = ft_calloc(map->rows, sizeof(char *));
+    if (!map->matrix)
+        return (0);
+    row = 0;
+    line = get_next_line(fd);
+    while (line != NULL)
+    {
+        len = ft_strlen(line);
+        if (len > 0 && line[len - 1] == '\n')
+            line[len - 1] = '\0';
+        map->matrix[row] = ft_strdup(line);
+        if(!map->matrix[row])
+            return (0);
         free(line);
-		row++;
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (1);
+        row++;
+        line = get_next_line(fd);
+    }
+    close(fd);
+    return (1);
 }

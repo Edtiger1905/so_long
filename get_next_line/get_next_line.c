@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 14:21:19 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 11:59:56 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:07:18 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static char	*read_buffer(int fd, char *buffer)
 		if (bytes_read == 0)
 		{
 			free(s1);
-			return(buffer);
-		}	
+			return (buffer);
+		}
 		s1[bytes_read] = '\0';
 		buffer = ft_strjoin(buffer, s1);
 	}

@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 11:56:20 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:07:37 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_rectangular(t_map *map)
 int	check_walls_rows(t_map *map)
 {
 	int	i;
-
+	
 	i = 0;
 	while (i < map->column)
 	{
@@ -50,6 +50,7 @@ int	check_walls_rows(t_map *map)
 			ft_printf("Error\nMap not surrounded by walls\n");
 			return (0);
 		}
+		i++;
 	}
 	return (1);
 }
