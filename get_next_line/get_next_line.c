@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edtiger1905 <edtiger1905@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 14:21:19 by epandele          #+#    #+#             */
-/*   Updated: 2025/09/26 10:34:32 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/06 11:57:29 by edtiger1905      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,16 @@ static char	*read_buffer(int fd, char *buffer)
 	while (bytes_read > 0 && !ft_strchr(buffer, '\n'))
 	{
 		bytes_read = read(fd, s1, BUFFER_SIZE);
-		if (bytes_read <= 0)
+		if (bytes_read < 0)
 		{
 			free(s1);
-            free(buffer);
+			free(buffer);
 			return (NULL);
+		}
+		if (bytes_read == 0)
+		{
+			free(s1);
+			return (buffer);
 		}
 		s1[bytes_read] = '\0';
         buffer = ft_strjoin(buffer, s1);
