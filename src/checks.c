@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 11:23:21 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/06 11:56:20 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_rectangular(t_map *map)
 	if (!map || !map->matrix)
 		return (0);
 	first_len = ft_strlen(map->matrix[0]);
-	i = 1;
+	i = 0;
 	while (i < map->rows)
 	{
 		if (ft_strlen(map->matrix[i]) != first_len)
@@ -42,13 +42,11 @@ int	check_walls_rows(t_map *map)
 	{
 		if (map->matrix[0][i] != '1')
 		{
-			ft_printf("check1");
 			ft_printf("Error\nMap not surrounded by walls\n");
 			return (0);
 		}
 		if (map->matrix[map->rows - 1][i] != '1')
 		{
-			ft_printf("check2");
 			ft_printf("Error\nMap not surrounded by walls\n");
 			return (0);
 		}

@@ -17,6 +17,8 @@ void init_struct(t_map *map)
     map->exit_count = 0;
     map->player_count = 0;
 }
+
+
 static int validate_map(t_map *map, char *file)
 {
     if(!init_map(map, file))
@@ -57,7 +59,6 @@ static int init_game_window(t_map *map, t_game *game)
     }
     return(1);
 }
-
 int main(int ac, char **av)
 {
     t_map map;

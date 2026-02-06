@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 11:29:57 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/06 11:53:42 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,18 @@ int	init_matrix(t_map *map, char *file)
 		return (close(fd), 0);
 	row = 0;
 	line = get_next_line(fd);
-	while (line)
+	while (line != NULL)
 	{
 		len = ft_strlen(line);
 		if (len > 0 && line[len - 1] == '\n')
 			line[len - 1] = '\0';
 		map->matrix[row] = ft_strdup(line);
-		free(line);
 		if (!map->matrix[row])
-			return (free_matrix(map), close(fd), 0);
+			return (0);
+        free(line);
 		row++;
 		line = get_next_line(fd);
 	}
-	map->matrix[row] = NULL;
 	close(fd);
 	return (1);
 }

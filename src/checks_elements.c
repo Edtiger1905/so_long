@@ -67,6 +67,7 @@ int validate_elements(t_map *map)
     }
     return(validate_counts(map));
 }
+
 int checks(t_map *map, char *filename)
 {
     if(!map_extension_is_valid(filename, ".ber"))
@@ -78,4 +79,4 @@ int checks(t_map *map, char *filename)
     if(!validate_elements(map))
         return(0);
     return(1);
-}
+} 
