@@ -32,13 +32,13 @@ static int validate_flood_fill(char **matrix, t_map *map)
             if(matrix[i][j] == 'E' || matrix[i][j] == 'C')
             {
                 ft_printf("Error: Unreachable elements\n");
-                return (-1);
+                return (0);
             }
             j++;
         }
         i++;
     }
-    return (0);
+    return (1);
 }
 
 static char **create_matrix_copy(t_map *map)

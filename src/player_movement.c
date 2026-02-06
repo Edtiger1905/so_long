@@ -49,6 +49,8 @@ void move_player(t_map *map, int dy, int dx)
     new_x = map->player_x + dx;
     if(!is_valid_move(map, new_y, new_x))
         return ;
+    if(map->matrix[new_y][new_x] == '1')
+        return ;
     map->matrix[map->player_y][map->player_x] = '0';
     check_coin(map, new_y, new_x);
     map->player_y = new_y;
