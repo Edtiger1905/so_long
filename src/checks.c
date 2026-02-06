@@ -6,7 +6,7 @@
 /*   By: edtiger1905 <edtiger1905@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 11:43:18 by edtiger1905      ###   ########.fr       */
+/*   Updated: 2026/02/06 12:03:20 by edtiger1905      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int	check_walls_rows(t_map *map)
 	{
 		if (map->matrix[0][i] != '1')
 		{
+			ft_printf("check1");
 			ft_printf("Error\nMap not surrounded by walls\n");
 			return (0);
 		}
 		if (map->matrix[map->rows - 1][i] != '1')
 		{
+			ft_printf("check2");
 			ft_printf("Error\nMap not surrounded by walls\n");
 			return (0);
 		}
@@ -64,11 +66,13 @@ int	check_walls_cols(t_map *map)
 	{
 		if (map->matrix[j][0] != '1')
 		{
+			ft_printf("check3");
 			ft_printf("Error\nMap not surrounded by walls\n");	
 			return (0);
 		}
 		if (map->matrix[j][map->column - 1] != '1')
 		{
+			ft_printf("check4");
 			ft_printf("Error\nMap not surrounded by walls\n");
 			return (0);
 		}
