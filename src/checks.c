@@ -34,7 +34,7 @@ int	is_rectangular(t_map *map)
 int	check_walls_rows(t_map *map)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < map->column)
 	{
@@ -63,7 +63,7 @@ int	check_walls_cols(t_map *map)
 		if (map->matrix[j][0] != '1')
 		{
 			ft_printf("check3");
-			ft_printf("Error\nMap not surrounded by walls\n");	
+			ft_printf("Error\nMap not surrounded by walls\n");
 			return (0);
 		}
 		if (map->matrix[j][map->column - 1] != '1')
@@ -98,8 +98,8 @@ int	map_extension_is_valid(char *filename, char *extension)
 		ft_printf("Error\nInvalid filename\n");
 		return (0);
 	}
-	if (ft_strncmp(&filename[filename_len - extension_len],
-			extension, extension_len) != 0)
+	if (ft_strncmp(&filename[filename_len - extension_len], extension,
+			extension_len) != 0)
 	{
 		ft_printf("Error\nMap must have .ber extension\n");
 		return (0);
