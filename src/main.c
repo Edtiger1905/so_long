@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:24:25 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 17:29:47 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/07 11:37:28 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	init_game_window(t_map *map, t_game *game)
 {
 	map->mlx = mlx_init();
 	if (!map->mlx)
-		return (ft_printf("Error: Failed to initialize MLX\n"), 0);
+		return (0);
 	if (!load_images(map))
 	{
 		exit_game(map, map->mlx);

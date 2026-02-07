@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 14:21:28 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 11:39:36 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/07 11:34:30 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2 && s2[i])
 		str[j++] = s2[i++];
 	str[j] = '\0';
+	free(s1);
 	return (str);
 }
 

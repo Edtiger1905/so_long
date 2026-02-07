@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 17:19:46 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/07 11:29:08 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	init_map(t_map *map, char *file)
 	map->rows = 0;
 	map->column = 0;
 	line = get_next_line(fd);
+	if(!line)
+		return(0);
 	while (line)
 	{
 		len = ft_strlen(line);
@@ -35,6 +37,7 @@ int	init_map(t_map *map, char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 	return (1);
 }
@@ -66,6 +69,7 @@ int	init_matrix(t_map *map, char *file)
 		row++;
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 	return (1);
 }

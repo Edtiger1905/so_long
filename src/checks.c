@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 17:00:10 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/07 11:09:49 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int	check_walls_rows(t_map *map)
 	{
 		if (map->matrix[0][i] != '1')
 		{
-			ft_printf("Error\nMap not surrounded by walls\n");
+			ft_printf("Error: Map not surrounded by walls\n");
 			return (0);
 		}
 		if (map->matrix[map->rows - 1][i] != '1')
 		{
-			ft_printf("Error\nMap not surrounded by walls\n");
+			ft_printf("Error: Map not surrounded by walls\n");
 			return (0);
 		}
 		i++;
@@ -62,14 +62,12 @@ int	check_walls_cols(t_map *map)
 	{
 		if (map->matrix[j][0] != '1')
 		{
-			ft_printf("check3");
-			ft_printf("Error\nMap not surrounded by walls\n");
+			ft_printf("Error: Map not surrounded by walls\n");
 			return (0);
 		}
 		if (map->matrix[j][map->column - 1] != '1')
 		{
-			ft_printf("check4");
-			ft_printf("Error\nMap not surrounded by walls\n");
+			ft_printf("Error: Map not surrounded by walls\n");
 			return (0);
 		}
 		j++;

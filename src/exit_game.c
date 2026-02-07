@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:26:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 17:26:01 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/07 11:44:04 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,6 @@ void	exit_game(t_map *map, void *mlx)
 {
 	free_matrix(map);
 	cleanup_images(map, mlx);
+	mlx_destroy_window(map->mlx, map->mlx_win);
+	mlx_destroy_display(map->mlx);
 }
