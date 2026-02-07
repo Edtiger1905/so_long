@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 14:21:19 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/07 10:54:12 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/07 13:00:16 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,9 @@ static char	*read_buffer(int fd, char *buffer)
 	{
 		bytes_read = read(fd, s1, BUFFER_SIZE);
 		if (bytes_read < 0)
-		{
-			free(s1);
-			free(buffer);
-			return (NULL);
-		}
+			return (free(s1), free(buffer), NULL);
 		if (bytes_read == 0)
-		{
-			free(s1);
-			return (buffer);
-		}
+			return (free(s1), buffer);
 		s1[bytes_read] = '\0';
 		buffer = ft_strjoin(buffer, s1);
 	}
@@ -46,6 +39,7 @@ static char	*get_line(char *buffer)
 {
 	char	*line;
 	int		len;
+	int		i;
 
 	if (!buffer || !buffer[0])
 		return (NULL);
@@ -55,18 +49,15 @@ static char	*get_line(char *buffer)
 	line = (char *)malloc(sizeof(char) * (len + 2));
 	if (!line)
 		return (NULL);
-	len = 0;
-	while (buffer[len] && buffer[len] != '\n')
+	i = 0;
+	while (i < len)
 	{
-		line[len] = buffer[len];
-		len++;
+		line[i] = buffer[i];
+		i++;
 	}
-	if (buffer[len] == '\n')
-	{
-		line[len] = buffer[len];
-		len++;
-	}
-	line[len] = '\0';
+	if (buffer[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
 	return (line);
 }
 
@@ -80,16 +71,10 @@ static char	*get_new_buffer(char *buffer)
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (!buffer[i])
-	{
-		free(buffer);
-		return (NULL);
-	}
+		return (free(buffer), NULL);
 	new_buff = (char *)malloc(sizeof(char) * (ft_strlen(&buffer[i + 1]) + 1));
 	if (!new_buff)
-	{
-		free(buffer);
-		return (NULL);
-	}
+		return (free(buffer), NULL);
 	i++;
 	j = 0;
 	while (buffer[i])
