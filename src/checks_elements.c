@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:11:59 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 17:12:11 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:31:23 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ static int	validate_counts(t_map *map)
 {
 	if (map->player_count != 1)
 	{
-		ft_printf("Error: Map must have exactly 1 player/n");
+		ft_printf("Error: Map must have exactly 1 player\n");
 		return (0);
 	}
 	if (map->exit_count != 1)
 	{
-		ft_printf("Error: Map must have exactly 1 exit/n");
+		ft_printf("Error: Map must have exactly 1 exit\n");
 		return (0);
 	}
 	if (map->coin < 1)
 	{
-		ft_printf("Error: Map must have at least 1 collectible/n");
+		ft_printf("Error: Map must have at least 1 collectible\n");
 		return (0);
 	}
 	return (1);

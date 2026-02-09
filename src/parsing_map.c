@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:25:17 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/07 12:42:09 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/09 14:17:51 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int	load_images(t_map *map, void *mlx)
 		map->img_wall = mlx_xpm_file_to_image(mlx, "./img/wall.xpm",
 				&map->img_width, &map->img_height);
 	if (!map->img_floor)
-		map->img_floor = mlx_xpm_file_to_image(mlx, "./img/floor.xpm",
+		map->img_floor = mlx_xpm_file_to_image(mlx, "./img/ground.xpm",
 				&map->img_width, &map->img_height);
 	if (!map->img_exit)
 		map->img_exit = mlx_xpm_file_to_image(mlx, "./img/exit.xpm",
 				&map->img_width, &map->img_height);
 	if (!map->img_player)
-		map->img_player = mlx_xpm_file_to_image(mlx, "./img/testcp.xpm",
+		map->img_player = mlx_xpm_file_to_image(mlx, "./img/player.xpm",
 				&map->img_width, &map->img_height);
 	if (!map->img_collectibles)
 		map->img_collectibles = mlx_xpm_file_to_image(mlx,
