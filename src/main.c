@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:24:25 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/07 11:37:28 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:26:31 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
-		return (ft_printf("Usage: %s <map.ber>\n", av[0]), 1);
+		return (ft_printf("This program needs exactly 2 arguments to work.\n"), 0);
 	init_struct(&map);
 	if (!validate_map(&map, av[1]))
 		return (1);
