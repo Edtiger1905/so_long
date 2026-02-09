@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edtiger1905 <edtiger1905@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:21:20 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/06 17:22:11 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/07 20:57:21 by edtiger1905      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	flood_fill(char **matrix, int x, int y, t_map *map)
+void	flood_fill(char **matrix, int y, int x, t_map *map)
 {
 	if (y < 0 || y >= map->rows || x < 0 || x >= map->column)
 		return ;
-	if (matrix[x][y] == '1' || matrix[x][y] == 'F')
+	if (matrix[y][x] == '1' || matrix[y][x] == 'F')
 		return ;
-	if (matrix[x][y] == 'E')
+	if (matrix[y][x] == 'E')
 	{
-		matrix[x][y] = 'F';
+		matrix[y][x] = 'F';
 		return ;
 	}
-	matrix[x][y] = 'F';
-	flood_fill(matrix, x + 1, y, map);
-	flood_fill(matrix, x - 1, y, map);
-	flood_fill(matrix, x, y + 1, map);
-	flood_fill(matrix, x, y - 1, map);
+	matrix[y][x] = 'F';
+	flood_fill(matrix, y + 1, x, map);
+	flood_fill(matrix, y - 1, x, map);
+	flood_fill(matrix, y, x + 1, map);
+	flood_fill(matrix, y, x - 1, map);
 }
 
 static int	validate_flood_fill(char **matrix, t_map *map)
