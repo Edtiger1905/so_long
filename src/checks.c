@@ -6,7 +6,7 @@
 /*   By: epandele <epandele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:00:00 by epandele          #+#    #+#             */
-/*   Updated: 2026/02/07 11:09:49 by epandele         ###   ########.fr       */
+/*   Updated: 2026/02/09 14:33:30 by epandele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int	is_rectangular(t_map *map)
 	int	i;
 	int	row_len;
 
+	if (map->rows == map->column)
+	{
+		write(2, "Error\nMap must be rectangular (not square)\n", 44);
+		return (0);
+	}
 	i = 0;
 	while (i < map->rows)
 	{
